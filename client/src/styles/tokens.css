@@ -1,0 +1,122 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap');
+
+:root {
+  color-scheme: dark;            /* kontrol bawaan browser (kalender, daftar pilihan, scrollbar) ikut gelap */
+  --ink: #e8f0f3;
+  --muted: #9db0ba;
+  --brand: #0f7a8d;              /* latar tombol utama (teks putih) */
+  --brand-dark: #0b6272;
+  --brand-text: #7fd3e2;         /* tautan dan teks aktif di latar gelap */
+  --brand-soft: rgba(127, 211, 226, 0.14);
+  --accent: #f2b705;             /* kuning marka jalan, dipakai hemat */
+  --danger: #ff8a80;
+  --danger-soft: rgba(255, 138, 128, 0.14);
+  --ok: #7ee0a8;
+  --ok-soft: rgba(126, 224, 168, 0.14);
+  --warn: #ffd666;
+  --warn-soft: rgba(255, 214, 102, 0.14);
+  --line: rgba(255, 255, 255, 0.12);
+  --field-border: #6f8591;
+
+  --glass: rgba(255, 255, 255, 0.07);
+  --glass-strong: rgba(16, 27, 35, 0.78);
+  --glass-border: rgba(255, 255, 255, 0.14);
+  --shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+
+  --r-lg: 18px;
+  --r-md: 10px;
+  --font: 'Plus Jakarta Sans', system-ui, sans-serif;
+  --font-num: 'Inter', system-ui, sans-serif;
+}
+
+* { box-sizing: border-box; }
+html, body, #root { min-height: 100%; }
+body {
+  margin: 0;
+  font-family: var(--font);
+  font-size: 15px;
+  line-height: 1.55;
+  color: var(--ink);
+  /* Latar kaca: tiga pendar warna lembut di atas dasar abu kebiruan */
+  /* Latar gelap bergradasi: pendar teal di kiri atas, ungu tipis di kanan bawah,
+     dasar yang menghangat ke bawah. Blur oranye ada di body::before dan body::after. */
+  background:
+    radial-gradient(900px 600px at 6% -8%, rgba(20, 160, 180, 0.30), transparent 60%),
+    radial-gradient(900px 700px at 100% 105%, rgba(110, 100, 230, 0.18), transparent 60%),
+    linear-gradient(160deg, #0a1217 0%, #0c1a22 55%, #1b130f 100%);
+  background-attachment: fixed;
+}
+/* Dua bola oranye yang diburamkan, tetap di tempat saat halaman digulir */
+body::before, body::after { content: ''; position: fixed; z-index: -1; pointer-events: none; border-radius: 50%; filter: blur(80px); }
+body::before { width: 46vmax; height: 46vmax; left: -14vmax; bottom: -18vmax; background: radial-gradient(circle, rgba(255, 120, 30, 0.45), rgba(255, 120, 30, 0) 70%); }
+body::after { width: 34vmax; height: 34vmax; right: -8vmax; top: -12vmax; background: radial-gradient(circle, rgba(255, 160, 40, 0.32), rgba(255, 160, 40, 0) 70%); }
+
+h1, h2, h3, p { margin: 0; }
+h1 { font-size: 26px; line-height: 1.2; font-weight: 700; letter-spacing: -0.01em; }
+h2 { font-size: 17px; line-height: 1.3; font-weight: 600; }
+button, input, select { font: inherit; }
+
+.hint { font-size: 13px; color: var(--muted); }
+.error-text { font-size: 14px; color: var(--danger); }
+.num { text-align: right; font-family: var(--font-num); font-variant-numeric: tabular-nums; white-space: nowrap; }
+
+/* Permukaan kaca: dipakai di sidebar, kartu ringkasan, dan kartu login saja */
+.glass {
+  background: var(--glass);
+  border: 1px solid var(--glass-border);
+  box-shadow: var(--shadow);
+  -webkit-backdrop-filter: blur(18px) saturate(140%);
+  backdrop-filter: blur(18px) saturate(140%);
+}
+@supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+  .glass { background: var(--glass-strong); }
+}
+@media (prefers-reduced-transparency: reduce) {
+  .glass { background: #16222b; -webkit-backdrop-filter: none; backdrop-filter: none; }
+}
+
+/* Tombol */
+.btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+  min-height: 42px; padding: 0 18px;
+  border: 1px solid rgba(255, 255, 255, 0.24); border-radius: var(--r-md);
+  background: rgba(255, 255, 255, 0.06); color: var(--ink);
+  font-size: 14px; font-weight: 600; text-decoration: none; cursor: pointer;
+  transition: background-color 0.15s, border-color 0.15s, box-shadow 0.15s, transform 0.15s;
+}
+.btn:hover:not(:disabled) { background: rgba(255, 255, 255, 0.13); border-color: var(--brand-text); box-shadow: 0 4px 14px rgba(0, 0, 0, 0.35); transform: translateY(-1px); }
+.btn:active:not(:disabled) { transform: translateY(0) scale(0.98); box-shadow: none; }
+.btn:focus-visible { outline: 2px solid var(--brand-text); outline-offset: 2px; }
+.btn:disabled { opacity: 0.5; cursor: not-allowed; }
+.btn-primary { background: var(--brand); border-color: var(--brand); color: #fff; }
+.btn-primary:hover:not(:disabled) { background: #139bb3; border-color: #139bb3; }
+.btn-danger { border-color: rgba(255, 138, 128, 0.5); color: var(--danger); }
+.btn-danger:hover:not(:disabled) { background: var(--danger-soft); border-color: var(--danger); }
+.btn-danger.solid { background: #c62828; border-color: #c62828; color: #fff; }
+.btn-danger.solid:hover:not(:disabled) { background: #e03535; border-color: #e03535; }
+.btn-sm { min-height: 36px; padding: 0 12px; font-size: 13px; }
+
+/* Form */
+.field { display: flex; flex-direction: column; gap: 5px; min-width: 0; }
+.field label { font-size: 13px; font-weight: 600; }
+.field input, .field select {
+  width: 100%; min-height: 44px; padding: 0 12px;
+  border: 1px solid var(--field-border); border-radius: var(--r-md);
+  background: rgba(255, 255, 255, 0.06); color: var(--ink);
+  transition: border-color 0.15s, box-shadow 0.15s;
+}
+.field input:hover:not(:disabled), .field select:hover:not(:disabled) { border-color: var(--brand-text); }
+.field input:focus-visible, .field select:focus-visible { outline: none; border-color: var(--brand-text); box-shadow: 0 0 0 3px rgba(127, 211, 226, 0.25); }
+.field input[aria-invalid='true'], .field select[aria-invalid='true'] { border-color: var(--danger); }
+.field input:disabled, .field select:disabled { background: rgba(255, 255, 255, 0.03); color: var(--muted); cursor: not-allowed; }
+.field select option { background: #14212a; color: var(--ink); }
+.field input::placeholder { color: #7d909a; }
+
+.notice { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 12px 16px; border-radius: 12px; font-size: 14px; }
+.notice-ok { background: var(--ok-soft); color: var(--ok); }
+.notice-danger { background: var(--danger-soft); color: var(--danger); }
+
+@media (prefers-reduced-motion: reduce) {
+  * { animation: none !important; transition: none !important; }
+  .btn:hover:not(:disabled), .btn:active:not(:disabled) { transform: none; }
+}

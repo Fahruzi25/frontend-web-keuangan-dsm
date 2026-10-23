@@ -1,0 +1,103 @@
+
+
+.page { display: flex; flex-direction: column; gap: 20px; max-width: 1240px; min-width: 0; }
+.page-head { display: flex; align-items: flex-end; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
+.page-head > div:first-child { display: flex; flex-direction: column; gap: 4px; min-width: 0; }
+.head-actions { display: flex; gap: 10px; flex-wrap: wrap; }
+.back-link { align-self: flex-start; margin-bottom: 4px; padding: 4px 0; color: var(--brand-text); font-size: 14px; font-weight: 600; text-decoration: none; }
+.back-link:hover { text-decoration: underline; text-underline-offset: 3px; }
+.back-link:focus-visible { outline: 2px solid var(--brand-text); outline-offset: 2px; border-radius: 4px; }
+
+.ledger { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px; margin: 0; }
+.ledger > div { padding: 14px 18px; border-radius: var(--r-lg); background: var(--glass); border: 1px solid var(--glass-border); box-shadow: var(--shadow); -webkit-backdrop-filter: blur(18px) saturate(140%); backdrop-filter: blur(18px) saturate(140%); min-width: 0; }
+.ledger dt { font-size: 13px; color: var(--muted); }
+.ledger dd { margin: 2px 0 0; font-family: var(--font-num); font-size: 20px; font-weight: 600; font-variant-numeric: tabular-nums; overflow-wrap: anywhere; }
+
+.toolbar { display: flex; flex-wrap: wrap; gap: 12px; align-items: flex-end; }
+.toolbar .field { flex: 1 1 160px; max-width: 260px; }
+.toolbar .field.grow { flex: 2 1 220px; max-width: 420px; }
+.seg { display: inline-flex; flex-wrap: wrap; gap: 4px; padding: 4px; border-radius: 14px; background: rgba(0, 0, 0, 0.35); border: 1px solid var(--line); }
+.seg button { min-height: 38px; padding: 0 16px; border: 0; border-radius: 10px; background: transparent; color: var(--muted); font-size: 14px; font-weight: 600; cursor: pointer; transition: background-color 0.15s, color 0.15s, box-shadow 0.15s; }
+.seg button:hover { color: var(--ink); }
+.seg button[aria-pressed='true'] { background: rgba(255, 255, 255, 0.14); color: var(--ink); box-shadow: 0 2px 8px rgba(0, 0, 0, 0.35); }
+.seg button:focus-visible { outline: 2px solid var(--brand-text); outline-offset: 2px; }
+.pager { display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
+.pager div { display: flex; align-items: center; gap: 10px; }
+
+.panel { display: flex; flex-direction: column; gap: 14px; padding: 20px; background: var(--glass-strong); border: 1px solid var(--glass-border); border-radius: var(--r-lg); box-shadow: var(--shadow); min-width: 0; }
+.panel-head-row { display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
+
+/* Tabel: tanpa gulir horizontal */
+.tbl { width: 100%; border-collapse: collapse; font-size: 14px; }
+.tbl th, .tbl td { padding: 11px 10px; border-bottom: 1px solid var(--line); text-align: left; vertical-align: middle; overflow-wrap: anywhere; }
+.tbl thead th { font-size: 12px; font-weight: 600; letter-spacing: 0.02em; color: var(--muted); border-bottom: 1px solid var(--field-border); }
+.tbl thead th.num, .tbl td.num, .tbl tfoot td.num { text-align: right; }
+.tbl tbody th[scope='row'] { font-weight: 600; }
+.tbl tbody tr:hover td, .tbl tbody tr:hover th[scope='row'] { background: rgba(255, 255, 255, 0.05); }
+.tbl tfoot th, .tbl tfoot td { border-bottom: 0; border-top: 1px solid var(--field-border); font-weight: 600; }
+.tbl .kontrak { font-size: 12px; color: var(--muted); }
+.tbl .empty { padding: 32px 12px; text-align: center; color: var(--muted); }
+.tbl small { display: block; color: var(--muted); font-size: 12px; font-weight: 400; }
+.tbl .tgl { white-space: nowrap; }
+.aksi { display: flex; gap: 6px; justify-content: flex-end; flex-wrap: wrap; }
+.group-row th { padding: 14px 10px 6px; border-bottom: 2px solid var(--accent); color: var(--brand-text); font-size: 12px; font-weight: 700; letter-spacing: 0.04em; }
+.neg { color: var(--danger); }
+
+.link { color: var(--brand-text); font-weight: 600; text-decoration: underline; text-decoration-color: rgba(127, 211, 226, 0.4); text-underline-offset: 3px; }
+.link:hover { color: #fff; text-decoration-color: currentColor; }
+.link:focus-visible { outline: 2px solid var(--brand-text); outline-offset: 2px; border-radius: 3px; }
+
+.badge { display: inline-block; padding: 2px 10px; border-radius: 999px; font-size: 12px; font-weight: 600; white-space: nowrap; }
+.badge-ok { background: var(--ok-soft); color: var(--ok); }
+.badge-warn { background: var(--warn-soft); color: var(--warn); }
+.badge-idle { background: rgba(255, 255, 255, 0.1); color: #c5d2d9; }
+
+/* Halaman form layar penuh */
+.form-panel { max-width: 920px; }
+.form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.form-grid .span2 { grid-column: 1 / -1; }
+.group-box { margin: 0; padding: 14px 16px 16px; border: 1px solid var(--line); border-radius: 14px; display: flex; flex-direction: column; gap: 14px; min-width: 0; background: rgba(255, 255, 255, 0.03); }
+.group-box legend { padding: 0 8px; font-size: 14px; font-weight: 700; }
+.radio-row { display: flex; gap: 8px; flex-wrap: wrap; }
+.radio-row label { display: inline-flex; align-items: center; gap: 8px; min-height: 42px; padding: 0 16px; border: 1px solid var(--field-border); border-radius: var(--r-md); background: rgba(255, 255, 255, 0.06); font-weight: 600; font-size: 14px; cursor: pointer; transition: border-color 0.15s, background-color 0.15s; }
+.radio-row label:hover { border-color: var(--brand-text); }
+.radio-row label:has(input:checked) { border-color: var(--brand-text); background: var(--brand-soft); color: var(--brand-text); }
+.radio-row label:has(input:focus-visible) { outline: 2px solid var(--brand-text); outline-offset: 2px; }
+.form-actions { display: flex; justify-content: flex-end; gap: 10px; flex-wrap: wrap; padding-top: 4px; }
+
+.info-list { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 14px 24px; margin: 0; }
+.info-list dt { font-size: 12px; color: var(--muted); }
+.info-list dd { margin: 2px 0 0; font-weight: 500; overflow-wrap: anywhere; }
+
+.sr-only { position: absolute; width: 1px; height: 1px; margin: -1px; padding: 0; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0; }
+
+@container (max-width: 640px) { .form-grid { grid-template-columns: 1fr; } }
+
+/* Ruang sempit: baris tabel menjadi kartu, label kolom muncul di sisi kiri tiap nilai */
+@container (max-width: 1040px) {
+  .tbl thead { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
+  .tbl, .tbl tbody, .tbl tfoot, .tbl tr { display: block; width: 100%; }
+  .tbl tr { margin-bottom: 10px; padding: 12px 14px; border: 1px solid var(--line); border-radius: 14px; background: rgba(255, 255, 255, 0.05); }
+  .tbl tbody tr:hover td, .tbl tbody tr:hover th[scope='row'] { background: transparent; }
+  .tbl th, .tbl td { display: flex; justify-content: space-between; align-items: baseline; gap: 16px; padding: 5px 0; border: 0; text-align: right; }
+  .tbl td[data-label]::before { content: attr(data-label); flex: none; max-width: 45%; color: var(--muted); font-size: 12px; text-align: left; }
+  .tbl tbody th[scope='row'], .tbl tfoot th { display: block; padding-bottom: 8px; font-size: 15px; text-align: left; }
+  .tbl tfoot tr { background: var(--brand-soft); }
+  .tbl tr.group-row { margin: 16px 0 6px; padding: 0; border: 0; background: none; }
+  .tbl tr.group-row th { display: block; padding: 0 0 6px; text-align: left; }
+  .tbl .empty { display: block; text-align: center; }
+  .tbl td.aksi-cell { display: block; padding-top: 8px; }
+  .aksi { justify-content: flex-start; }
+  .tbl small { text-align: right; }
+}
+
+.inline-row { display: flex; gap: 8px; }
+.inline-row input { flex: 1; min-width: 0; }
+
+/* Logo perusahaan (lihat components/ui/Logo.jsx): tanpa kotak, nama putih di samping */
+.brand { display: inline-flex; align-items: center; gap: 10px; min-width: 0; }
+.logo-img { display: block; flex: none; width: auto; }
+.logo-mark { width: 6px; height: 28px; flex: none; border-radius: 3px; background: repeating-linear-gradient(to bottom, var(--accent) 0 8px, transparent 8px 12px); }
+.logo-name { color: #fff; font-size: 14px; font-weight: 700; line-height: 1.25; }
+.brand-lg { gap: 14px; }
+.brand-lg .logo-name { font-size: 18px; }

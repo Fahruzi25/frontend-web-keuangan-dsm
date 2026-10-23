@@ -1,0 +1,13 @@
+.login { display: flex; align-items: center; justify-content: center; min-height: 100vh; padding: 24px 16px; }
+.login-card { display: flex; flex-direction: column; gap: 22px; width: min(420px, 100%); padding: 36px 32px; border-radius: 26px; }
+.login-brand { display: flex; }
+.login-form { display: flex; flex-direction: column; gap: 18px; }
+.login-title { display: flex; flex-direction: column; gap: 4px; }
+.login-title h1 { font-size: 28px; }
+.login-pass { position: relative; display: flex; }
+.login-pass input { padding-right: 104px; }
+.login-toggle { position: absolute; top: 4px; right: 4px; bottom: 4px; padding: 0 12px; border: 0; border-radius: 8px; background: transparent; color: var(--brand-text); font-size: 13px; font-weight: 600; cursor: pointer; transition: background-color 0.15s; }
+.login-toggle:hover { background: var(--brand-soft); }
+.login-toggle:focus-visible { outline: 2px solid var(--brand-text); outline-offset: 1px; }
+.login-submit { width: 100%; min-height: 48px; font-size: 15px; }
+.login-road { height: 4px; border-radius: 2px; background: repeating-linear-gradient(90deg, var(--accent) 0 28px, transparent 28px 44px); }
