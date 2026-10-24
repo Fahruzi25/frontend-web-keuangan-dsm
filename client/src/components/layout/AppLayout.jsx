@@ -5,10 +5,9 @@ import './AppLayout.css';
 
 const MENU = [
   { to: '/dashboard', label: 'Dashboard' },
-  { to: '/giro', label: 'Rekening Koran Giro' },
-  { to: '/project', label: 'Project DSM' },
-  { to: '/rekap-project', label: 'Rekap Project' },
-  { to: '/rekap-operasional', label: 'Rekap Operasional' },
+  { to: '/giro', label: 'Rekening' },
+  { to: '/project', label: 'Project' },
+  { to: '/rekap', label: 'Rekap' },
 ];
 
 export default function AppLayout() {
@@ -30,7 +29,7 @@ export default function AppLayout() {
           </ul>
         </nav>
         <div className="side-user">
-          <span className="side-name">{user?.namaLengkap}</span>
+          <span className="side-name">{user?.namaLengkap || user?.username}</span>
           <button type="button" className="btn btn-sm" onClick={logout}>Keluar</button>
         </div>
       </aside>

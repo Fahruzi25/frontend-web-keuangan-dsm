@@ -23,7 +23,7 @@ export default function RekapOperasionalDetailPage() {
     return () => { batal = true; };
   }, [kategori, subkategori, bulan]);
 
-  const back = { to: `/rekap-operasional${bulan ? `?bulan=${bulan}` : ''}`, label: 'Kembali ke Rekap Operasional' };
+  const back = { to: `/rekap?tampilan=operasional${bulan ? `&bulan=${bulan}` : ''}`, label: 'Kembali ke Rekap Operasional' };
   const periode = bulan ? `${BULAN[Number(bulan) - 1]} 2026` : 'Seluruh 2026';
 
   return (

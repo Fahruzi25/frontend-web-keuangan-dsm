@@ -9,10 +9,9 @@ import TransaksiFormPage from './features/giro/TransaksiFormPage';
 import ProjectPage from './features/project/ProjectPage';
 import ProjectFormPage from './features/project/ProjectFormPage';
 import ProjectDetailPage from './features/project/ProjectDetailPage';
-import RekapProjectPage from './features/rekap-project/RekapProjectPage';
-import RekapProjectDetailPage from './features/rekap-project/RekapProjectDetailPage';
-import RekapOperasionalPage from './features/rekap-operasional/RekapOperasionalPage';
-import RekapOperasionalDetailPage from './features/rekap-operasional/RekapOperasionalDetailPage';
+import RekapPage from './features/rekap/RekapPage';
+import RekapProjectDetailPage from './features/rekap/RekapProjectDetailPage';
+import RekapOperasionalDetailPage from './features/rekap/RekapOperasionalDetailPage';
 
 function TidakDitemukan() {
   return (
@@ -40,10 +39,12 @@ export default function App() {
               <Route path="project/tambah" element={<ProjectFormPage />} />
               <Route path="project/:id" element={<ProjectDetailPage />} />
               <Route path="project/:id/ubah" element={<ProjectFormPage />} />
-              <Route path="rekap-project" element={<RekapProjectPage />} />
-              <Route path="rekap-project/:id" element={<RekapProjectDetailPage />} />
-              <Route path="rekap-operasional" element={<RekapOperasionalPage />} />
-              <Route path="rekap-operasional/:kategori/:subkategori" element={<RekapOperasionalDetailPage />} />
+              <Route path="rekap" element={<RekapPage />} />
+              <Route path="rekap/project/:id" element={<RekapProjectDetailPage />} />
+              <Route path="rekap/operasional/:kategori/:subkategori" element={<RekapOperasionalDetailPage />} />
+              {/* alamat lama tetap berfungsi */}
+              <Route path="rekap-project" element={<Navigate to="/rekap?tampilan=project" replace />} />
+              <Route path="rekap-operasional" element={<Navigate to="/rekap?tampilan=operasional" replace />} />
               <Route path="*" element={<TidakDitemukan />} />
             </Route>
           </Route>

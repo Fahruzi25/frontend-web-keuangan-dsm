@@ -16,7 +16,7 @@ export default function RekapProjectDetailPage() {
     return () => { batal = true; };
   }, [id]);
 
-  const back = { to: '/rekap-project', label: 'Kembali ke Rekap Project' };
+  const back = { to: '/rekap?tampilan=project', label: 'Kembali ke Rekap Project' };
 
   if (state.status !== 'ok') {
     return (

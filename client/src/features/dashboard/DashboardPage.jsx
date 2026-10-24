@@ -62,7 +62,7 @@ export default function DashboardPage() {
         hint="Ringkasan keuangan DSM"
         actions={<>
           <Link className="btn btn-primary" to="/giro/tambah">Tambah transaksi</Link>
-          <Link className="btn" to="/project">Project DSM</Link>
+          <Link className="btn" to="/project">Project</Link>
         </>}
       />
 

@@ -5,9 +5,10 @@
   --ink: #e8f0f3;
   --muted: #9db0ba;
   --brand: #0f7a8d;              /* latar tombol utama (teks putih) */
-  --brand-dark: #0b6272;
-  --brand-text: #7fd3e2;         /* tautan dan teks aktif di latar gelap */
+  --brand-dark: #f2b705;
+  --brand-text: #ffff;         /* tautan dan teks aktif di latar gelap */
   --brand-soft: rgba(127, 211, 226, 0.14);
+  --orange: #ffff;             /* judul halaman layar penuh dan sorotan tombol Kembali */
   --accent: #f2b705;             /* kuning marka jalan, dipakai hemat */
   --danger: #ff8a80;
   --danger-soft: rgba(255, 138, 128, 0.14);

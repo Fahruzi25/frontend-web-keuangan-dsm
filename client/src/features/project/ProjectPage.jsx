@@ -72,7 +72,7 @@ export default function ProjectPage() {
   return (
     <div className="page">
       <PageHeader
-        title="Project DSM"
+        title="Project DSM 2026"
         hint={`${projects.length} project terdaftar`}
         actions={<Link className="btn btn-primary" to="/project/tambah">Tambah project</Link>}
       />
@@ -97,33 +97,36 @@ export default function ProjectPage() {
         <p role="alert" className="notice notice-danger">{loadError}<button type="button" className="btn btn-sm" onClick={muat}>Muat ulang</button></p>
       )}
 
-      <section className="panel" aria-label="Daftar project">
-        <table className="tbl">
-          <thead>
-            <tr>
-              <th scope="col">Nama project</th>
-              <th scope="col">Kontrak INAPROC</th>
-              <th scope="col">Paket</th>
-              <th scope="col" className="num">Nilai kontrak</th>
-              <th scope="col" className="num">SP2D</th>
-              <th scope="col" className="num">Sudah cair</th>
-              <th scope="col" className="num">Belum masuk</th>
-              <th scope="col"><span className="sr-only">Aksi</span></th>
-            </tr>
-          </thead>
-          <tbody>
-            {loading && <tr><td colSpan={8} className="empty">Memuat project…</td></tr>}
-            {!loading && tersaring.length === 0 && (
-              <tr><td colSpan={8} className="empty">
-                {query ? 'Tidak ada project yang cocok dengan pencarian.' : 'Belum ada project. Pilih Tambah project untuk memulai.'}
-              </td></tr>
-            )}
-            {!loading && groups.map((g) => {
-              const isi = tersaring.filter((p) => p.groupId === g.id);
-              if (!isi.length) return null;
-              return [
-                <tr key={`g${g.id}`} className="group-row"><th colSpan={8} scope="colgroup">{g.nama}</th></tr>,
-                ...isi.map((p) => (
+      {loading && <p role="status" className="hint">Memuat project…</p>}
+      {!loading && tersaring.length === 0 && (
+        <section className="panel" aria-label="Daftar project">
+          <p className="empty-note">
+            {query ? 'Tidak ada project yang cocok dengan pencarian.' : 'Belum ada project. Pilih Tambah project untuk memulai.'}
+          </p>
+        </section>
+      )}
+
+      {!loading && groups.map((g) => {
+        const isi = tersaring.filter((p) => p.groupId === g.id);
+        if (!isi.length) return null;
+        return (
+          <section key={g.id} className="panel" aria-labelledby={`g${g.id}`}>
+            <h2 id={`g${g.id}`} className="judul-panel">{g.nama}</h2>
+            <table className="tbl">
+              <thead>
+                <tr>
+                  <th scope="col">Nama project</th>
+                  <th scope="col">Kontrak INAPROC</th>
+                  <th scope="col">Paket</th>
+                  <th scope="col" className="num">Nilai kontrak</th>
+                  <th scope="col" className="num">SP2D</th>
+                  <th scope="col" className="num">Sudah cair</th>
+                  <th scope="col" className="num">Belum masuk</th>
+                  <th scope="col"><span className="sr-only">Aksi</span></th>
+                </tr>
+              </thead>
+              <tbody>
+                {isi.map((p) => (
                   <tr key={p.id}>
                     <th scope="row"><Link className="link" to={`/project/${p.id}`}>{p.namaProject}</Link></th>
                     <td data-label="Kontrak INAPROC" className="kontrak">{p.kontrakInaproc || '—'}</td>
@@ -148,12 +151,12 @@ export default function ProjectPage() {
                       </div>
                     </td>
                   </tr>
-                )),
-              ];
-            })}
-          </tbody>
-        </table>
-      </section>
+                ))}
+              </tbody>
+            </table>
+          </section>
+        );
+      })}
       <p className="hint">SP2D = nilai kontrak ÷ (1 + PPN) × (1 − PPh), dihitung otomatis. Pilih nama project untuk melihat pencairannya.</p>
     </div>
   );

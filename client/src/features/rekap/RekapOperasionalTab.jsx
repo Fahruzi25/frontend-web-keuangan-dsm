@@ -1,11 +1,10 @@
 import { useEffect, useMemo, useState } from 'react';
 import { Link, useSearchParams } from 'react-router-dom';
-import PageHeader from '../../components/ui/PageHeader';
 import { rekapOperasional } from '../../api/rekap.api';
 import { formatAngka, formatRupiah } from '../../utils/format';
 import { OPSI_BULAN } from '../../utils/bulan';
 
-export default function RekapOperasionalPage() {
+export default function RekapOperasionalTab() {
   const [params, setParams] = useSearchParams();
   const bulan = params.get('bulan') || '';
   const [rows, setRows] = useState(null);
@@ -18,22 +17,28 @@ export default function RekapOperasionalPage() {
   };
   useEffect(muat, [bulan]); // eslint-disable-line react-hooks/exhaustive-deps
 
+  // Ubah bulan tanpa menghapus pilihan "tampilan" di alamat
+  const ubahBulan = (nilai) => setParams((lama) => {
+    const baru = new URLSearchParams(lama);
+    if (nilai) baru.set('bulan', nilai); else baru.delete('bulan');
+    return baru;
+  });
+
   const total = useMemo(() => (rows || []).reduce((s, r) => s + r.total, 0), [rows]);
   const terbesar = rows?.[0] || null; // sudah diurutkan dari total terbesar
   const porsi = (n) => (total ? `${Math.round((n / total) * 100)}%` : '0%');
   const query = bulan ? `?bulan=${bulan}` : '';
 
   return (
-    <div className="page">
-      <PageHeader
-        title="Rekap Operasional"
-        hint="Pengeluaran operasional dari rekening giro dan kas, dikelompokkan per subkategori. Pilih subkategori untuk melihat transaksinya."
-      />
+    <>
+      <p className="hint">
+        Pengeluaran operasional dari rekening giro dan kas, dikelompokkan per subkategori. Pilih subkategori untuk melihat transaksinya.
+      </p>
 
       <div className="toolbar">
         <div className="field">
           <label htmlFor="bulan">Bulan</label>
-          <select id="bulan" value={bulan} onChange={(e) => setParams(e.target.value ? { bulan: e.target.value } : {})}>
+          <select id="bulan" value={bulan} onChange={(e) => ubahBulan(e.target.value)}>
             <option value="">Seluruh 2026</option>
             {OPSI_BULAN.map((b) => <option key={b.value} value={b.value}>{b.label}</option>)}
           </select>
@@ -51,7 +56,7 @@ export default function RekapOperasionalPage() {
           </dl>
 
           <section className="panel" aria-labelledby="judul-sub">
-            <h2 id="judul-sub">Pengeluaran per subkategori</h2>
+            <h2 id="judul-sub" className="judul-panel">Pengeluaran per subkategori</h2>
             <table className="tbl">
               <thead>
                 <tr>
@@ -67,7 +72,7 @@ export default function RekapOperasionalPage() {
                 {rows.map((r) => (
                   <tr key={r.key}>
                     <th scope="row">
-                      <Link className="link" to={`/rekap-operasional/${encodeURIComponent(r.kategori)}/${encodeURIComponent(r.subkategori)}${query}`}>{r.subkategori}</Link>
+                      <Link className="link" to={`/rekap/operasional/${encodeURIComponent(r.kategori)}/${encodeURIComponent(r.subkategori)}${query}`}>{r.subkategori}</Link>
                     </th>
                     <td data-label="Kategori">{r.kategori}</td>
                     <td data-label="Transaksi" className="num">{r.jumlah}</td>
@@ -91,6 +96,6 @@ export default function RekapOperasionalPage() {
           </section>
         </>
       )}
-    </div>
+    </>
   );
 }
