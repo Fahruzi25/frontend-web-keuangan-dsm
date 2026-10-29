@@ -1,0 +1,20 @@
+# Dependency
+node_modules
+
+# Environment variables (password database)
+.env
+.env.*
+!.env.example
+
+# Hasil generate Prisma (bisa dibuat ulang dengan: npx prisma generate)
+generated/
+
+# File Excel data perusahaan
+*.xlsx
+*.xls
+
+# File skill AI assistant
+.agents/
+.windsurf/
+.claude/
+skills-lock.json
